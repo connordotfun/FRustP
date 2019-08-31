@@ -1,5 +1,5 @@
 
-struct Signal<T>{
+struct Signal<T: std::marker::Sized>{
     inner: T
 }
 
@@ -11,9 +11,9 @@ struct Signal<T>{
 // }
 
 // todo: sort out a more complicated generic using where clause that disallows Signal<Signal> types.
-impl Signal<T: std::marker::Sized>{ 
+impl<T> Signal<T>{ 
 
-    fn fmap<T, B:std::marker::Sized> (signal : Signal<T>, f : Fn(T) -> B ) 
+    fn fmap<B:std::marker::Sized> (signal : Signal<T>, f : Fn(T) -> B ) 
         -> Signal<B>{
             
         }
